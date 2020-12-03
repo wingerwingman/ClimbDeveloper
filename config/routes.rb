@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :areas
   root to: 'welcome#home'
   get 'about', to: 'welcome#about'
