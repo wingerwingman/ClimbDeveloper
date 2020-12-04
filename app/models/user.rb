@@ -8,6 +8,9 @@ class User < ApplicationRecord
   validates :email, :user_name, uniqueness: true 
   validates :password, confirmation: true 
 
+  has_many :areas
+  has_many :comments
+
   def first_name
     self.name.split.first
   end
