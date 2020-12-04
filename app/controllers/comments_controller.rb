@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
     before_action :set_comment, only: [:destroy]
 
     def create
-        comment = current_user.comments.new(content: params[:newComment], blog_id: params[:blog_id])
+        comment = current_user.comments.new(content: params[:newComment], area_id: params[:area_id])
 
         if comment.save
             render json: { comment: comment }, status: :ok
@@ -26,6 +26,6 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-        params.require(:comment).permit(:content, :blog_id)
+        params.require(:comment).permit(:content, :area_id)
     end
 end

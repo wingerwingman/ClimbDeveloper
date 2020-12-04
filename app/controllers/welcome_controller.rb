@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
   def home
     if !current_user.is_a?(GuestUser)
-      redirect_to blogs_path
+      redirect_to area_path
     end
   end
 

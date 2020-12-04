@@ -1,3 +1,4 @@
+require 'pry'
 class AreasController < ApplicationController
   before_action :set_area, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show, :get_comments] 
@@ -62,9 +63,10 @@ class AreasController < ApplicationController
     end
   end
 
-  def get_areas
-    areas = @blog.areass.select("areas.*, users.name").joins(:user).by_created_at
-    render json: { areas: aress }
+  def get_comments
+    @area = set_area
+    comments = @area.comments.select("comments.*, users.name").joins(:user).by_created_at
+    render json: { comments: comments }
   end
 
   private
