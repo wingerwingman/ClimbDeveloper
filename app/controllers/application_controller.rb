@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
 
-#   include DeviseWhitelist 
+#   include DeviseWhitelist
 
-before_action :configure_permitted_parameters, if: :devise_controller?
+    before_action :configure_permitted_parameters, if: :devise_controller?
     
     
     def configure_permitted_parameters
