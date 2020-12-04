@@ -1,5 +1,6 @@
 class AreasController < ApplicationController
   before_action :set_area, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show, :get_comments] 
 
   # GET /areas
   # GET /areas.json
@@ -24,7 +25,7 @@ class AreasController < ApplicationController
   # POST /areas
   # POST /areas.json
   def create
-    @area = Area.new(area_params)
+    @area = Area.new(area_params.merge(user_id: current_user.id))
 
     respond_to do |format|
       if @area.save
@@ -59,6 +60,11 @@ class AreasController < ApplicationController
       format.html { redirect_to areas_url, notice: 'Area was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def get_areas
+    areas = @blog.areass.select("areas.*, users.name").joins(:user).by_created_at
+    render json: { areas: aress }
   end
 
   private
