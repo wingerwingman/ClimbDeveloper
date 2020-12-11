@@ -1,12 +1,22 @@
+import { hot } from 'react-hot-loader/root';
 import React from 'react';
 // import ReactDOM from 'react-dom';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+  // logout() {
+    // localStorage.clear();
+    // window.location.href = '/';
+  
+  // }
+
   return (
     <div className="App">
       <header className="App-header">
+        {/* <p>test</p> */}
+        {/* <a href="#" onClick={this.logout()}>LOGOUT</a> */}
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -24,4 +34,4 @@ function App() {
   );
 }
 
-export default App;
+export default hot(App);

@@ -12,11 +12,16 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-hot-loader": "^4.13.0",
     "react_ujs": "^2.6.1",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
   "devDependencies": {
+    "@webpack-cli/serve": "^1.1.0",
     "webpack-dev-server": "^3.11.0"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --hot --mode development --config ./webpack.dev.config"
   }
 }

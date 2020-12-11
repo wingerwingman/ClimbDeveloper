@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController
+class Api::V1::CommentsController < Api::V1::ApplicationController
     before_action :set_comment, only: [:destroy]
 
     def create

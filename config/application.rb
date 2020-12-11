@@ -22,6 +22,7 @@ Bundler.require(*Rails.groups)
 module ClimbDeveloper
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    config.autoloader = :classic
     config.load_defaults 6.0
 
     # Settings in config/environments/* take precedence over those specified here.
