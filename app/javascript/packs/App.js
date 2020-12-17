@@ -1,5 +1,6 @@
 import { hot } from 'react-hot-loader/root';
 import React from 'react';
+// import { hot } from 'react-hot-loader';
 // import ReactDOM from 'react-dom';
 import logo from './logo.svg';
 import './App.css';
@@ -15,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {/* <p>test</p> */}
+        <p>test</p>
         {/* <a href="#" onClick={this.logout()}>LOGOUT</a> */}
         <img src={logo} className="App-logo" alt="logo" />
         <p>
