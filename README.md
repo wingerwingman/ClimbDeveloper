@@ -1,24 +1,33 @@
-# README
+### About
+`rails-react-auth` is an out of the box solution to have a rails server (API) with devise and JWT support and a React application with a basis authentication system.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Also, we include material-ui as dependency for the UI, but this is completely optional.
 
-Things you may want to cover:
+---
 
-* Ruby version
+### Running the Example Locally
+```
+1. git clone https://github.com/sanchan/rails-react-auth.git
+2. cd rails-react-auth
 
-* System dependencies
+Server
+1. cd server
+2. bundle install
+3. rails db:setup
+4. rails s
 
-* Configuration
+Client
+1. cd client
+2. npm install
+3. npm start
+```
 
-* Database creation
+Yay! You got the application working on http://localhost:4000 (the API works on port 3000)
 
-* Database initialization
+For development for the client application you can open a new terminal and run:
 
-* How to run the test suite
+```
+npm run watch
+```
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+to recompile the client everytime that a file changes.
