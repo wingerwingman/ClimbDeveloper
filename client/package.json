@@ -5,12 +5,10 @@
   "scripts": {
     "clean": "rimraf build",
     "build:webpack": "webpack --config webpack.config.prod.js",
-    "build": "npm run clean && npm run build:webpack",
-    "start": "cross-env NODE_PATH='source' node devServer.js",
+    "build": "react-scripts build",
+    "start": "react-scripts start -p 4000",
     "debug": "cross-env NODE_PATH='source' echo 'Nothing? `npm install -g iron-node`' && iron-node source/debug.js",
-    "lint": "eslint source",
-    "pretest": "npm run lint",
-    "test": "cross-env NODE_PATH='source' babel-node source/test/index.js",
+    "test": "react-scripts test",
     "watch": "watch 'clear && npm run clean && npm run test -s' source",
     "update": "updtr"
   },
@@ -33,9 +31,8 @@
   },
   "homepage": "https://github.com/wingerwingman/ClimbDeveloper.git",
   "devDependencies": {
-    "babel-cli": "6.7.7",
-    "babel-core": "6.7.7",
-    "babel-eslint": "6.0.4",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-loader": "6.2.4",
     "babel-plugin-react-transform": "2.0.2",
     "babel-plugin-transform-runtime": "6.7.5",
@@ -43,32 +40,47 @@
     "babel-preset-react": "6.5.0",
     "babel-preset-stage-0": "6.5.0",
     "cheerio": "0.20.0",
-    "cross-env": "3.1.3",
-    "css-loader": "^0.25.0",
+    "cross-env": "^3.1.3",
+    "css-loader": "^5.0.1",
     "deep-freeze": "0.0.1",
-    "eslint": "2.8.0",
-    "eslint-plugin-react": "5.0.1",
     "react-addons-test-utils": "15.0.1",
     "redbox-react": "1.2.3",
     "rimraf": "2.5.2",
-    "tape": "4.5.1",
     "updtr": "0.1.10",
     "watch": "0.17.1",
-    "webpack": "1.13.0",
+    "webpack": "^5.12.3",
     "webpack-dev-middleware": "1.6.1"
   },
   "dependencies": {
-    "express": "4.13.4",
-    "material-ui": "^0.16.2",
-    "react": "15.0.1",
+    "@material-ui/core": "^4.11.2",
+    "@material-ui/icons": "^4.11.2",
+    "express": "^4.17.1",
+    "history": "^5.0.0",
+    "npm-watch": "^0.7.0",
+    "react": "^17.0.0",
     "react-css-modules": "^4.0.3",
-    "react-dom": "15.0.1",
+    "react-dom": "^17.0.0",
+    "react-history": "^0.18.2",
     "react-redux": "^4.4.6",
-    "react-router": "^3.0.0",
+    "react-router": "^3.2.0",
+    "react-router-dom": "^5.2.0",
     "react-router-redux": "^4.0.7",
-    "react-tap-event-plugin": "^1.0.0",
+    "react-scripts": "4.0.1",
     "redux": "3.5.2",
+    "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.1.0",
     "style-loader": "^0.13.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
