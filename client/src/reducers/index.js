@@ -4,8 +4,10 @@ import auth  from './auth';
 import links from './links';
 
 
-export default combineReducers({
+const rootReducer = combineReducers({
   routing: routerReducer,
   auth,
   links
-});
+})
+
+export default rootReducer

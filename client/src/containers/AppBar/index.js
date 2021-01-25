@@ -2,7 +2,7 @@ import React                     from 'react';
 import { withRouter }            from 'react-router';
 import { connect }               from 'react-redux';
 import { bindActionCreators }    from 'redux';
-import AppBar                    from '../../components/AppBar';
+import NavigationBar                    from '../../components/NavBar';
 import { logoutUser }            from '../../actions/auth';
 
 class AppBarContainer extends React.Component {
@@ -10,7 +10,7 @@ class AppBarContainer extends React.Component {
     let { props } = this;
 
     return (
-      <AppBar {...props} />
+      <NavigationBar {...props} />
     );
   }
 }

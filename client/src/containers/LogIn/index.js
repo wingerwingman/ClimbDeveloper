@@ -11,17 +11,17 @@ import styles                    from './styles.css';
 
 class LogIn extends React.Component {
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     let { auth } = this.props;
 
     if (auth.user) {
-      this.props.router.push('/');
+      this.props.history.push('/');
     }
   }
 
   onLoginClick (creds) {
     this.props.loginUser(creds).then(()=> {
-      this.props.router.push('/');
+      this.props.history.push('/');
     });
   }
 

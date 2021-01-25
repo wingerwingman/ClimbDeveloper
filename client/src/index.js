@@ -1,9 +1,13 @@
-import React                    from 'react';
-import ReactDOM                 from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+// import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
 import { Provider }             from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import App from './App';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 // import { composeWithDevTools } from 'redux-devtools-extension';
 // eslint-disable-next-line
 import { browserHistory } from 'react-router';
@@ -12,17 +16,20 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers/index';
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+// const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 // const create = applyMiddleware(thunk)(createStore);
 
 // eslint-disable-next-line
-// function storeConfig (initialState) {
-//   return create(rootReducer, {}, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-// }
 
-// let store = storeConfig();
-// let history = syncHistoryWithStore(browserHistory, store);
+const create = applyMiddleware(thunk)(createStore);
+
+function storeConfig (initialState) {
+  return create(rootReducer, {}, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+};
+
+let store = storeConfig();
+let history = syncHistoryWithStore(browserHistory, store);
 
 // eslint-disable-next-line
 // import { Router, Route, IndexRoute, browserHistory } from 'react-router';
@@ -41,6 +48,7 @@ const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk
 
 ReactDOM.render(
   <Provider store={store} key="provider">
+    <BrowserRouter>
     <App />
     {/* <Router history={browserHistory}>
       <AppBar />
@@ -53,12 +61,14 @@ ReactDOM.render(
         <Route path="/signup" component={ SignUp } />
       </Route>
     </Router> */}
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-// export { history };
+export { history };
 export default store;
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+// reportWebVitals();

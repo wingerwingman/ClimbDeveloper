@@ -10,7 +10,7 @@ import styles                    from './styles.css';
 // http://stackoverflow.com/questions/35381276/redux-async-requests-with-fetch-api
 
 class SignUp extends React.Component {
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     let { auth } = this.props;
 
     if (auth.user) {
@@ -20,7 +20,7 @@ class SignUp extends React.Component {
 
   onSignUpClick (creds) {
     this.props.signUp(creds).then(()=> {
-      this.props.router.push('/');
+      this.props.history.push('/');
     });
   }
 // eslint-disable-next-line

@@ -1,6 +1,6 @@
 import React            from 'react';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-import AppBar           from '../../containers/AppBar';
+import AppBarContainer           from '../../containers/AppBar';
 import AppMenu          from '../../components/AppMenu';
 import AppContent       from '../../components/AppContent';
 import styles           from './styles.css';
@@ -31,7 +31,7 @@ export default class App extends React.Component {
     return (
       <MuiThemeProvider>
         <div className={styles.app}>
-          <AppBar
+          <AppBarContainer
             title={'My Application'}
             onLeftIconButtonTouchTap={this.handleMenuToggle}
           />

@@ -3,7 +3,7 @@ import Secret                 from '../../components/Secret';
 import { connect }            from 'react-redux';
 
 class SecretContainer extends React.Component {
-  componentWillReceiveProps () {
+  UNSAFE_componentWillReceiveProps () {
     let { auth } = this.props;
     console.log('auth', auth);
 
