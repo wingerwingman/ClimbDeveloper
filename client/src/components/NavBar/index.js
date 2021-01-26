@@ -1,30 +1,28 @@
 import React  from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators }    from 'redux';
 import { NavLink, Router, withRouter } from 'react-router-dom';
-// eslint-disable-next-line
+import { requireAuth }          from '../../utilities/auth';
+import { logoutUser }            from '../../actions/auth';
 import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav } from 'react-bootstrap';
-// eslint-disable-next-line
-// import { Container, Navbar, Nav, NavItem, NavLink } from 'react-bootstrap';
-// // import FlatButton                from '@material-ui/core/FlatButton';
-// import SvgIcon from '@material-ui/core/SvgIcon';
-
-// import MenuIcon from '@material-ui/icons/Menu';
-// import { Toolbar, ToolbarGroup } from 'material-ui/Toobar';
-// import * as stylesjs             from './styles.js';
 
 
 class NavigationBar extends React.Component {
   constructor (props) {
     super(props);
-
+    
     this.logInOut = this.logInOut.bind(this);
     this.logoutUser = this.logoutUser.bind(this);
   }
 
+  componentWillMount () {
+    let { auth } = this.props;
+  }
+  
 
   handleClick (url) {
-    this.props.router.push(url);
+    this.props.history.push(url);
   }
 
   logoutUser () {
@@ -32,7 +30,7 @@ class NavigationBar extends React.Component {
 
     // eslint-disable-next-line
     return new Promise( (fulfill, reject) => {
-      this.props.router.push('/');
+      this.props.history.push('/');
       fulfill(true);
     }).then(() => {
       logoutUser();
@@ -45,9 +43,9 @@ class NavigationBar extends React.Component {
     let { auth, logoutUser } = this.props;
 
     if (auth.user) {
-      return <NavLink label="Logout" onTouchTap={this.logoutUser} />;
+      return <LinkContainer to="/logout" onClick={this.logoutUser}><Nav.Link>Logout</Nav.Link></LinkContainer>
     } else {
-      return <NavLink label="Login" onTouchTap={this.handleClick.bind(this, '/login')} />;
+      return <LinkContainer to="/login"><Nav.Link>Login</Nav.Link></LinkContainer>
     }
   }
 
@@ -72,7 +70,7 @@ class NavigationBar extends React.Component {
           {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
           <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="navbar">
-          <LinkContainer to="/Home">
+          <LinkContainer to="/">
             <Nav.Link>Home</Nav.Link>
           </LinkContainer>
           <LinkContainer to="/links">
@@ -93,4 +91,19 @@ class NavigationBar extends React.Component {
   }
 }
 
-export default NavigationBar;
+function mapStateToProps (state) {
+  return {
+    auth: state.auth,
+  };
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    logoutUser: bindActionCreators(logoutUser, dispatch)
+  };
+}
+
+export default withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NavigationBar));
