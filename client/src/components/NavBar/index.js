@@ -6,6 +6,7 @@ import { requireAuth }          from '../../utilities/auth';
 import { logoutUser }            from '../../actions/auth';
 import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav } from 'react-bootstrap';
+import styles from './styles.css';
 
 
 class NavigationBar extends React.Component {
@@ -28,7 +29,6 @@ class NavigationBar extends React.Component {
   logoutUser () {
     let { logoutUser } = this.props;
 
-    // eslint-disable-next-line
     return new Promise( (fulfill, reject) => {
       this.props.history.push('/');
       fulfill(true);
@@ -39,7 +39,6 @@ class NavigationBar extends React.Component {
 
   logInOut () {
 
-    // eslint-disable-next-line
     let { auth, logoutUser } = this.props;
 
     if (auth.user) {
@@ -50,26 +49,14 @@ class NavigationBar extends React.Component {
   }
 
   render () {
-    // eslint-disable-next-line
-    // let { title, onLeftIconButtonTouchTap } = this.props;
 
     return (
       <div className="navbar">
-  
-        {/* <Navbar bg="light">
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/links">Links</NavLink>
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/secret">Secret</NavLink>
-          {this.logInOut()}
-        </Navbar> */}
-        <Navbar bg="light" expand="lg">
-          {/* <LinkContainer to="/">
-            <Navbar.Brand></Navbar.Brand>
-          </LinkContainer> */}
-          {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
+
+        <Navbar bg="primary" variant="dark">
+
           <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="navbar">
+        <Nav class="text-primary" className="mr-auto">
           <LinkContainer to="/">
             <Nav.Link>Home</Nav.Link>
           </LinkContainer>
@@ -85,7 +72,9 @@ class NavigationBar extends React.Component {
           {this.logInOut()}
         </Nav>
           </Navbar.Collapse>
+          
         </Navbar>
+
       </div>
     );
   }

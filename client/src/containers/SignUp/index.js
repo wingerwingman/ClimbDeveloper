@@ -10,7 +10,7 @@ import styles                    from './styles.css';
 // http://stackoverflow.com/questions/35381276/redux-async-requests-with-fetch-api
 
 class SignUp extends React.Component {
-  UNSAFE_componentWillMount () {
+  componentWillMount () {
     let { auth } = this.props;
 
     if (auth.user) {

@@ -11,7 +11,7 @@ import styles                    from './styles.css';
 
 class LogIn extends React.Component {
 
-  UNSAFE_componentWillMount () {
+  componentDidMount () {
     let { auth } = this.props;
 
     if (auth.user) {

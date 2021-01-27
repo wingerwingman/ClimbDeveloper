@@ -1,5 +1,5 @@
 import React from 'react';
-
+import '../../App.css';
 export default class Link extends React.Component {
   render () {
     let { text, href } = this.props;

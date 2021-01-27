@@ -1,7 +1,7 @@
 import React                  from 'react';
 import { connect }            from 'react-redux';
 import Link                   from '../../components/Link';
-
+import '../../App.css';
 class Links extends React.Component {
   render () {
     // eslint-disable-next-line
