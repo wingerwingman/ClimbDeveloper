@@ -4,12 +4,11 @@ import { bindActionCreators }    from 'redux';
 import { loginUser }             from '../../actions/auth';
 import styles                    from './styles.css';
 
-// https://github.com/mjrussell/redux-auth-wrapper/blob/master/examples/localStorage/components/Login.js
-// https://github.com/auth0-blog/redux-auth/blob/master/components/Login.js
-// https://www.sitepoint.com/introduction-to-using-jwt-in-rails/
-// http://stackoverflow.com/questions/35381276/redux-async-requests-with-fetch-api
-
 class LogIn extends React.Component {
+
+  state = {
+    error: ''
+  }
 
   componentDidMount () {
     let { auth } = this.props;
@@ -20,12 +19,16 @@ class LogIn extends React.Component {
   }
 
   onLoginClick (creds) {
-    this.props.loginUser(creds).then(()=> {
-      this.props.history.push('/');
-    });
+    if (this.state.error === true) {
+      { this.state.error &&
+        <h3 className="error"> { this.state.error } </h3> }
+    } else {
+      this.props.loginUser(creds).then(()=> {
+        this.props.history.push('/');
+      });
+    };
   }
 
-  // eslint-disable-next-line
   handleClick (event) {
     const email = this.refs.email;
     const password = this.refs.password;

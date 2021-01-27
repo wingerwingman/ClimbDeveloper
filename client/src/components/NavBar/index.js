@@ -56,7 +56,7 @@ class NavigationBar extends React.Component {
         <Navbar bg="primary" variant="dark">
 
           <Navbar.Collapse id="basic-navbar-nav">
-        <Nav class="text-primary" className="mr-auto">
+        <Nav className="mr-auto">
           <LinkContainer to="/">
             <Nav.Link>Home</Nav.Link>
           </LinkContainer>

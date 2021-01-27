@@ -38,7 +38,7 @@ class SignUp extends React.Component {
       <div className={styles['email-wrapper']}>
         <input type='text' ref='email' placeholder='Email' />
         <input type='password' ref='password' placeholder='Password' />
-        <input type='password_confirmation' ref='password_confirmation' placeholder='Confirm Password' />
+        <input type='password' ref='password_confirmation' placeholder='Confirm Password' />
         <button onClick={(event) => this.handleClick(event)} className="btn btn-primary">
           {'Sign up'}
         </button>
