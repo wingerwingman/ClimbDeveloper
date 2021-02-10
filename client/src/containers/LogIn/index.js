@@ -1,4 +1,4 @@
-import React                     from 'react';
+import React, { useState }       from 'react';
 import { connect }               from 'react-redux';
 import { bindActionCreators }    from 'redux';
 import { loginUser }             from '../../actions/auth';
@@ -6,11 +6,12 @@ import styles                    from './styles.css';
 
 class LogIn extends React.Component {
 
-  state = {
-    error: ''
-  }
-
-  componentDidMount () {
+  // state = {
+  //     error: ''
+  //   }
+    
+    componentDidMount () {
+    // const error = useState("");
     let { auth } = this.props;
 
     if (auth.user) {
@@ -19,14 +20,15 @@ class LogIn extends React.Component {
   }
 
   onLoginClick (creds) {
-    if (this.state.error === true) {
-      { this.state.error &&
-        <h3 className="error"> { this.state.error } </h3> }
-    } else {
-      this.props.loginUser(creds).then(()=> {
+    this.props.loginUser(creds).then(()=> {
+      let error = this.props.auth.error[0];
+      if (error === true) {
+        { error &&
+          <h3 className="error"> { error } </h3> }
+      } else {
         this.props.history.push('/');
-      });
-    };
+      };
+    });
   }
 
   handleClick (event) {
@@ -55,7 +57,8 @@ class LogIn extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    auth: state.auth
+    auth: state.auth,
+    error: state.error
   };
 }
 

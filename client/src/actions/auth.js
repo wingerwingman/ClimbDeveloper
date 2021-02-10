@@ -5,7 +5,7 @@ import {
 } from '../constants';
 
 export function loginUser (creds) {
-
+  
   let config = {
     method: 'POST',
     headers: {
@@ -15,9 +15,10 @@ export function loginUser (creds) {
     body: JSON.stringify({
       email: creds.email,
       password: creds.password,
+      error: creds.error
     })
   };
-
+  
   return dispatch => {
     return fetch('http://localhost:3000/auth/sign_in', config)
       .then((response) => {
@@ -30,10 +31,24 @@ export function loginUser (creds) {
         } else {
           dispatch({ type: USER_ACCESS_REQUESTED, payload: user });
         }
-      }).catch(err => console.log('Error: ', err));
-  };
-}
-
+      }).catch(error => {
+        // Deal with the error
+        dispatch(errorActionCreator("USER_ACCESS_ERROR ", error))
+      })
+    };
+    // handleErrors = () => {
+    //   return (
+    //     <div>
+    //       <ul>
+    //       {this.state.errors.map(error => {
+    //       return <li key={error}>{error}</li>
+    //         })}
+    //       </ul>
+    //     </div>
+    //   )
+    // };
+  }
+  
 export function signUp (creds) {
   const user = creds;
   return dispatch => {
@@ -46,7 +61,6 @@ export function signUp (creds) {
       body: JSON.stringify({user: user})
     })
       .then(response => response.json())
-      // eslint-disable-next-line
       .then(jresp => {
         dispatch(({
           // name: newUser.name,
@@ -54,7 +68,6 @@ export function signUp (creds) {
           password: user.password,
           password_confirmation: user.password_confirmation})
         );
-        // eslint-disable-next-line
       }).then(({ response }) =>  {
         if (!user.auth_token) {
           dispatch({ type: USER_ACCESS_ERROR, payload: user });
@@ -73,4 +86,12 @@ export function logoutUser () {
       fulfill(true);
     });
   };
+}
+
+export const errorActionCreator = (errorType, error) => {
+  return {
+    type: errorType,
+    error: true,
+    payload: error,
+  }
 }
