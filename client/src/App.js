@@ -15,9 +15,9 @@ import Links                    from './containers/Links';
 import Secret                   from './containers/Secret';
 import Home                     from './components/Home';
 import About                    from './components/About';
-import { Navbar, Nav } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap'
-import { NavLink, withRouter } from 'react-router-dom';
+// import { Navbar, Nav } from 'react-bootstrap';
+// import { LinkContainer } from 'react-router-bootstrap'
+// import { NavLink, withRouter } from 'react-router-dom';
 const App = () => {
   
     return (

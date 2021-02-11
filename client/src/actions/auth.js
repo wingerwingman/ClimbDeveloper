@@ -61,7 +61,7 @@ export function signUp (creds) {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({user: user}, config)
+      body: JSON.stringify({user: user})
     })
       .then(response => response.json())
       
@@ -70,7 +70,8 @@ export function signUp (creds) {
           // name: newUser.name,
           email: user.email,
           password: user.password,
-          password_confirmation: user.password_confirmation})
+          password_confirmation: user.password_confirmation,
+          error: user.error})
         );
       }).then(({ user, response }) =>  {
         if (!user.auth_token) {

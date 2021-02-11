@@ -1,4 +1,4 @@
-import React                     from 'react';
+import React, { useState }       from 'react';
 import { connect }               from 'react-redux';
 import { bindActionCreators }    from 'redux';
 import { signUp }                from '../../actions/auth';
@@ -16,7 +16,7 @@ class SignUp extends React.Component {
     let { auth } = this.props;
 
     if (auth.user) {
-      this.props.router.push('/');
+      this.props.history.push('/');
     }
   };
 
@@ -52,11 +52,8 @@ class SignUp extends React.Component {
 
       <div className={styles['email-wrapper']}>
         <input type='text' ref='email' placeholder='Email' />
-        {/* <div className="text-danger">{this.state.errors.email}</div> */}
         <input type='password' ref='password' placeholder='Password' />
-        {/* <div className="text-danger">{this.state.errors.password}</div> */}
         <input type='password' ref='password_confirmation' placeholder='Confirm Password' />
-        {/* <div className="text-danger">{this.state.errors.confirm_password}</div> */}
         <button onClick={(event) => { this.handleClick(event) }} className="btn btn-primary">
           {'Sign up'}
         </button>

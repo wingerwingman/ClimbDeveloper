@@ -36,8 +36,8 @@ class LogIn extends React.Component {
     const hStyle = { color: 'red' };
 
     return (
+      
       <div className={styles['email-wrapper']}>
-
         <input type='text' ref='email' placeholder='Email' />
         <input type='password' ref='password' placeholder='Password' />
         <button onClick={(event) => this.handleClick(event)} className="btn btn-primary">
