@@ -1,3 +1,4 @@
 export const USER_ACCESS_REQUESTED = 'USER_ACCESS_REQUESTED';
 export const USER_ACCESS_ERROR     = 'USER_ACCESS_ERROR';
 export const USER_LOGED_OUT        = 'USER_LOGED_OUT';
+export const USER_SIGNUP_ERROR     = 'USER_ACCESS_ERROR';

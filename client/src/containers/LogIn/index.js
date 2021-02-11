@@ -6,12 +6,8 @@ import styles                    from './styles.css';
 
 class LogIn extends React.Component {
 
-  // state = {
-  //     error: ''
-  //   }
     
     componentDidMount () {
-    // const error = useState("");
     let { auth } = this.props;
 
     if (auth.user) {
@@ -21,10 +17,7 @@ class LogIn extends React.Component {
 
   onLoginClick (creds) {
     this.props.loginUser(creds).then(()=> {
-      let error = this.props.auth.error[0];
-      if (error === true) {
-        { error &&
-          <h3 className="error"> { error } </h3> }
+      if (this.props.auth.error !== undefined) {
       } else {
         this.props.history.push('/');
       };
@@ -40,6 +33,8 @@ class LogIn extends React.Component {
 
   render () {
 
+    const hStyle = { color: 'red' };
+
     return (
       <div className={styles['email-wrapper']}>
 
@@ -50,6 +45,9 @@ class LogIn extends React.Component {
         </button>
         <br/>
         <a href='/signup'>Sign Up</a>
+        
+        { this.props.auth.error &&
+          <h3 style={ hStyle } className="error"> { this.props.auth.error[0] } </h3> }
       </div>
     );
   }

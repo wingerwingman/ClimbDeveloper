@@ -1,7 +1,8 @@
 import {
   USER_ACCESS_REQUESTED,
   USER_LOGED_OUT,
-  USER_ACCESS_ERROR 
+  USER_ACCESS_ERROR,
+  USER_SIGNUP_ERROR
 } from '../constants';
 
 import { auth } from '../utilities/auth';
@@ -17,6 +18,10 @@ export default function authReducer (state = initialState, action) {
       auth.clear();
       return Object.assign({});
     case USER_ACCESS_ERROR:
+      return { 
+        ...state,
+        error: action.payload.errors}
+    case USER_SIGNUP_ERROR:
       return { 
         ...state,
         error: action.payload.errors}

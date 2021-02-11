@@ -1,7 +1,8 @@
 import {
   USER_ACCESS_REQUESTED,
   USER_ACCESS_ERROR,
-  USER_LOGED_OUT
+  USER_LOGED_OUT,
+  USER_SIGNUP_ERROR
 } from '../constants';
 
 export function loginUser (creds) {
@@ -36,20 +37,22 @@ export function loginUser (creds) {
         dispatch(errorActionCreator("USER_ACCESS_ERROR ", error))
       })
     };
-    // handleErrors = () => {
-    //   return (
-    //     <div>
-    //       <ul>
-    //       {this.state.errors.map(error => {
-    //       return <li key={error}>{error}</li>
-    //         })}
-    //       </ul>
-    //     </div>
-    //   )
-    // };
   }
   
 export function signUp (creds) {
+  // let config = {
+  //   method: 'POST',
+  //   headers: {
+  //     'Accept': 'application/json',
+  //     'Content-Type': 'application/json'
+  //   },
+  //   body: JSON.stringify({
+  //     email: creds.email,
+  //     password: creds.password,
+  //     password_confirmation: creds.password_confirmation,
+  //     error: creds.error
+  //   })
+  // };
   const user = creds;
   return dispatch => {
     return fetch(`http://localhost:3000/users`, {
@@ -58,9 +61,10 @@ export function signUp (creds) {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({user: user})
+      body: JSON.stringify({user: user}, config)
     })
       .then(response => response.json())
+      
       .then(jresp => {
         dispatch(({
           // name: newUser.name,
@@ -68,14 +72,17 @@ export function signUp (creds) {
           password: user.password,
           password_confirmation: user.password_confirmation})
         );
-      }).then(({ response }) =>  {
+      }).then(({ user, response }) =>  {
         if (!user.auth_token) {
-          dispatch({ type: USER_ACCESS_ERROR, payload: user });
+          dispatch({ type: USER_SIGNUP_ERROR, payload: user });
         } else {
           dispatch({ type: USER_ACCESS_REQUESTED, payload: user });
         }
-      }).catch(err => console.log('Error: ', err));
-  };
+      }).catch(error => {
+        // Deal with the error
+        dispatch(errorActionCreator("USER_SIGNUP_ERROR ", error))
+      })
+    };
 }
 
 export function logoutUser () {
