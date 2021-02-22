@@ -11,6 +11,12 @@ import styles                    from './styles.css';
 
 class SignUp extends React.Component {
 
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     error: {}
+  //   }
+  // }
 
   componentDidMount () {
     let { auth } = this.props;
@@ -21,20 +27,20 @@ class SignUp extends React.Component {
   };
 
   onSignUpClick (creds) {
-
     this.props.signUp(creds).then(()=> {
       if (this.props.auth.error !== undefined) {
       } else {
         this.props.history.push('/');
       };
     });
-
+    
     // this.props.signUp(creds).then(()=> {
-    //   this.props.history.push('/');
-    // });
-  }
-  
-  handleClick (event) {
+      //   this.props.history.push('/');
+      // });
+    }
+    
+    handleClick (event) {
+    event.preventDefault();
       const email = this.refs.email;
       const password = this.refs.password;
       const password_confirmation = this.refs.password_confirmation;
@@ -45,8 +51,20 @@ class SignUp extends React.Component {
   
 
   render () {
-
     const hStyle = { color: 'red' };
+    let errors = this.props.auth.error;
+
+    let errorMap = [];
+    if (errors !== undefined) { 
+      if (!!this.props.auth.error.email !== false){ 
+        errorMap.push(this.props.auth.error.email);
+      } else if (!!this.props.auth.error.password !== false) {
+        errorMap.push(this.props.auth.error.password);
+      } else if (!!this.props.auth.error.password_confirmation !== false) {
+        errorMap.push(this.props.auth.error.password_confirmation);
+      }
+    }
+
 
     return (
 
@@ -59,8 +77,8 @@ class SignUp extends React.Component {
         </button>
         <br/>
         <a href='/login'>Login</a>
-        { this.props.auth.error &&
-          <h3 style={ hStyle } className="error"> { this.props.auth.error[0] } </h3> }
+        <h3 style={hStyle} className="error">{errorMap}</h3>
+          
       </div>
     );
   }

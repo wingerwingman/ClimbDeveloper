@@ -1,8 +1,7 @@
 import {
   USER_ACCESS_REQUESTED,
   USER_ACCESS_ERROR,
-  USER_LOGED_OUT,
-  USER_SIGNUP_ERROR
+  USER_LOGED_OUT
 } from '../constants';
 
 export function loginUser (creds) {
@@ -25,7 +24,6 @@ export function loginUser (creds) {
       .then((response) => {
         return response.json()
         .then(user => ({ user, response }));
-        // eslint-disable-next-line
       }).then(({ user, response }) =>  {
         if (!user.auth_token) {
           dispatch({ type: USER_ACCESS_ERROR, payload: user });
@@ -40,51 +38,38 @@ export function loginUser (creds) {
   }
   
 export function signUp (creds) {
-  // let config = {
-  //   method: 'POST',
-  //   headers: {
-  //     'Accept': 'application/json',
-  //     'Content-Type': 'application/json'
-  //   },
-  //   body: JSON.stringify({
-  //     email: creds.email,
-  //     password: creds.password,
-  //     password_confirmation: creds.password_confirmation,
-  //     error: creds.error
-  //   })
-  // };
-  const user = creds;
-  return dispatch => {
-    return fetch(`http://localhost:3000/users`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({user: user})
+  
+  let config = {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      user: {
+      email: creds.email,
+      password: creds.password,
+      password_confirmation: creds.password_confirmation,
+      error: creds.error
+      }
     })
-      .then(response => response.json())
-      
-      .then(jresp => {
-        dispatch(({
-          // name: newUser.name,
-          email: user.email,
-          password: user.password,
-          password_confirmation: user.password_confirmation,
-          error: user.error})
-        );
+  };
+  
+  return dispatch => {
+    return fetch('http://localhost:3000/users', config)
+    .then((response) => {
+      return response.json()
+      .then(user => ({ user, response }));
       }).then(({ user, response }) =>  {
         if (!user.auth_token) {
-          dispatch({ type: USER_SIGNUP_ERROR, payload: user });
-        } else {
-          dispatch({ type: USER_ACCESS_REQUESTED, payload: user });
+          dispatch({ type: USER_ACCESS_ERROR, payload: user });
         }
       }).catch(error => {
         // Deal with the error
         dispatch(errorActionCreator("USER_SIGNUP_ERROR ", error))
       })
     };
-}
+  }
 
 export function logoutUser () {
   return dispatch => {

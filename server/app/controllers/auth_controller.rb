@@ -8,6 +8,15 @@ class AuthController < ApplicationController
     end
   end
 
+  # def sign_up 
+  #   user = User.find_for_database_authentication(email: params[:email])
+  #   if user.valid_password?(params[:password])
+  #     render json: payload(user)
+  #   else
+  #     render json: {errors: ['Invalid information']}, status: :unauthorized
+  #   end
+  # end
+
   private
 
   def payload(user)
