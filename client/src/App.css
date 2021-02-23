@@ -27,6 +27,8 @@ nav a {
 /* override bootstrap navbar colors */
 .navbar,
 .navbar-default {
+  text-align: right;
+  left: -5%;
     background-image: linear-gradient(to bottom,#3378f8 0,#05437e 100%) !important; /* override background image gradient w/ flat color */
 }
 a {
@@ -40,4 +42,12 @@ a {
 
 .li {
   color: black;
+}
+.navbar-brand
+{
+    position: relative;
+
+    left: -70%;
+    text-align: left;
+    margin:0 auto;
 }

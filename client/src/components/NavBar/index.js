@@ -2,12 +2,10 @@ import React  from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators }    from 'redux';
 import { NavLink, Router, withRouter } from 'react-router-dom';
-import { requireAuth }          from '../../utilities/auth';
 import { logoutUser }            from '../../actions/auth';
 import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav } from 'react-bootstrap';
-import styles from './styles.css';
-
+import Logo from '../../images/cdlogo.png'
 
 class NavigationBar extends React.Component {
   constructor (props) {
@@ -54,9 +52,11 @@ class NavigationBar extends React.Component {
       <div className="navbar">
 
         <Navbar bg="primary" variant="dark">
-
           <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
+        <a class="navbar-brand">
+          <img src={Logo} height={80} width={225} style={{textAlign:"left"}} />
+        </a>
           <LinkContainer to="/">
             <Nav.Link>Home</Nav.Link>
           </LinkContainer>
@@ -65,9 +65,6 @@ class NavigationBar extends React.Component {
           </LinkContainer>
           <LinkContainer to="/about">
             <Nav.Link>About</Nav.Link>
-          </LinkContainer>
-          <LinkContainer to="/secret">
-            <Nav.Link>Secret</Nav.Link>
           </LinkContainer>
           {this.logInOut()}
         </Nav>
