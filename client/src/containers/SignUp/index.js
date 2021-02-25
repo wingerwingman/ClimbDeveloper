@@ -44,9 +44,25 @@ class SignUp extends React.Component {
       const email = this.refs.email;
       const password = this.refs.password;
       const password_confirmation = this.refs.password_confirmation;
-      const creds = { email: email.value.trim(), password: password.value.trim(), password_confirmation: password_confirmation.value.trim() };
+      const name = this.refs.name;
+      const dob = this.refs.dob;
+      const def_location = this.refs.def_location;
+      const gender = this.refs.gender;
+      const address = this.refs.address;
+      const state = this.refs.state;
+      const area_code = this.refs.area_code;
+      const language = this.refs.language;
+      const creds = { email: email.value.trim(), password: password.value.trim(), password_confirmation: password_confirmation.value.trim(), name: name.value.trim(), dob: dob.value.trim(), def_location: def_location.value.trim(), gender: gender.value.trim(), address: address.value.trim(), state: state.value.trim(), area_code: area_code.value.trim(), language: language.value.trim() };
       this.onSignUpClick(creds);
   }
+  //   name: creds.name,
+  //   dob: creds.dob,
+  //   def_location: creds.def_location,
+  //   gender: creds.gender,
+  //   address: creds.address,
+  //   state: creds.state,
+  //   area_code: creds.area_code,
+  //   language: creds.language,
 
   
 
@@ -72,6 +88,14 @@ class SignUp extends React.Component {
         <input type='text' ref='email' placeholder='Email' />
         <input type='password' ref='password' placeholder='Password' />
         <input type='password' ref='password_confirmation' placeholder='Confirm Password' />
+        <input type='text' ref='name' placeholder='Name' />
+        <input type='text' ref='dob' placeholder='DOB' />
+        <input type='text' ref='def_location' placeholder='Default Location' />
+        <input type='text' ref='gender' placeholder='Gender' />
+        <input type='text' ref='address' placeholder='Street address' />
+        <input type='text' ref='state' placeholder='State' />
+        <input type='text' ref='area_code' placeholder='Area code' />
+        <input type='text' ref='language' placeholder='Language' />
         <button onClick={(event) => { this.handleClick(event) }} className="btn btn-primary">
           {'Sign up'}
         </button>

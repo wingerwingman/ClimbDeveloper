@@ -50,6 +50,14 @@ export function signUp (creds) {
       email: creds.email,
       password: creds.password,
       password_confirmation: creds.password_confirmation,
+      name: creds.name,
+      dob: creds.dob,
+      def_location: creds.def_location,
+      gender: creds.gender,
+      address: creds.address,
+      state: creds.state,
+      area_code: parseInt(creds.area_code),
+      language: creds.language,
       error: creds.error
       }
     })
