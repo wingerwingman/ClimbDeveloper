@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20210225190435) do
     t.text     "def_location"
     t.text     "gender"
     t.text     "address"
+    t.text     "country"
     t.text     "state"
     t.integer  "area_code"
     t.text     "language"

@@ -5,6 +5,7 @@ class AddColumnsToUser < ActiveRecord::Migration[5.0]
     add_column :users, :def_location, :text
     add_column :users, :gender, :text
     add_column :users, :address, :text
+    add_column :users, :country, :text
     add_column :users, :state, :text
     add_column :users, :area_code, :integer
     add_column :users, :language, :text

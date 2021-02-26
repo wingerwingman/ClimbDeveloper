@@ -55,6 +55,7 @@ export function signUp (creds) {
       def_location: creds.def_location,
       gender: creds.gender,
       address: creds.address,
+      country: creds.country,
       state: creds.state,
       area_code: parseInt(creds.area_code),
       language: creds.language,

@@ -5,9 +5,9 @@ class ApplicationController < ActionController::API
 
   protected
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :email, :password, :dob, :def_location, :gender, :address, :state, :area_code, :language)}
+    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :email, :password, :dob, :def_location, :gender, :address, :country, :state, :area_code, :language)}
 
-    devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name, :email, :password, :current_password, :dob, :def_location, :gender, :address, :state, :area_code, :language)}
+    devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name, :email, :password, :current_password, :dob, :def_location, :gender, :address, :country, :state, :area_code, :language)}
   end
 
   def authenticate_request!

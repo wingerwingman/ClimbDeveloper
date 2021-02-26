@@ -1,5 +1,6 @@
 import React, { useState }       from 'react';
 import { connect }               from 'react-redux';
+import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 import { bindActionCreators }    from 'redux';
 import { signUp }                from '../../actions/auth';
 import styles                    from './styles.css';
@@ -11,12 +12,11 @@ import styles                    from './styles.css';
 
 class SignUp extends React.Component {
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     error: {}
-  //   }
-  // }
+  constructor (props) {
+    super(props);
+    this.state = { country: '', region: '', email: '', password: '', password_confirmation: '', def_location: '', name: '',  gender: '', area_code: '', address: '', language: '', dob: ''};
+    this.handleChange = this.handleChange.bind(this);
+  }
 
   componentDidMount () {
     let { auth } = this.props;
@@ -24,7 +24,19 @@ class SignUp extends React.Component {
     if (auth.user) {
       this.props.history.push('/');
     }
-  };
+  }
+
+  selectCountry (val) {
+    this.setState({ country: val });
+  }
+
+  selectRegion (val) {
+    this.setState({ region: val });
+  }
+
+  handleChange(event) {
+    return this.setState({ [event.target.name]: event.target.value });
+  }
 
   onSignUpClick (creds) {
     this.props.signUp(creds).then(()=> {
@@ -33,42 +45,32 @@ class SignUp extends React.Component {
         this.props.history.push('/');
       };
     });
+  }
     
-    // this.props.signUp(creds).then(()=> {
-      //   this.props.history.push('/');
-      // });
-    }
-    
-    handleClick (event) {
+  handleClick (event) {
     event.preventDefault();
-      const email = this.refs.email;
-      const password = this.refs.password;
-      const password_confirmation = this.refs.password_confirmation;
-      const name = this.refs.name;
-      const dob = this.refs.dob;
-      const def_location = this.refs.def_location;
-      const gender = this.refs.gender;
-      const address = this.refs.address;
-      const state = this.refs.state;
-      const area_code = this.refs.area_code;
-      const language = this.refs.language;
-      const creds = { email: email.value.trim(), password: password.value.trim(), password_confirmation: password_confirmation.value.trim(), name: name.value.trim(), dob: dob.value.trim(), def_location: def_location.value.trim(), gender: gender.value.trim(), address: address.value.trim(), state: state.value.trim(), area_code: area_code.value.trim(), language: language.value.trim() };
+      const email = this.state.email;
+      const password = this.state.password;
+      const password_confirmation = this.state.password_confirmation;
+      const name = this.state.name;
+      const dob = this.state.dob;
+      const def_location = this.state.def_location;
+      const gender = this.state.gender;
+      const address = this.state.address;
+      const area_code = this.state.area_code;
+      const language = this.state.language;
+      const country = this.state.country;
+      const state = this.state.region;
+      const creds = { email: email.trim(), password: password.trim(), password_confirmation: password_confirmation.trim(), name: name.trim(), dob: dob.trim(), def_location: def_location.trim(), gender: gender.trim(), address: address.trim(), area_code: area_code.trim(), language: language.trim(), country: country.trim(), state: state.trim() };
+      console.log(creds);
       this.onSignUpClick(creds);
   }
-  //   name: creds.name,
-  //   dob: creds.dob,
-  //   def_location: creds.def_location,
-  //   gender: creds.gender,
-  //   address: creds.address,
-  //   state: creds.state,
-  //   area_code: creds.area_code,
-  //   language: creds.language,
-
   
 
   render () {
     const hStyle = { color: 'red' };
     let errors = this.props.auth.error;
+    const { country, region } = this.state;
 
     let errorMap = [];
     if (errors !== undefined) { 
@@ -85,20 +87,27 @@ class SignUp extends React.Component {
     return (
 
       <div className={styles['email-wrapper']}>
-        <input type='text' ref='email' placeholder='Email' />
-        <input type='password' ref='password' placeholder='Password' />
-        <input type='password' ref='password_confirmation' placeholder='Confirm Password' />
-        <input type='text' ref='name' placeholder='Name' />
-        <input type='text' ref='dob' placeholder='DOB' />
-        <input type='text' ref='def_location' placeholder='Default Location' />
-        <input type='text' ref='gender' placeholder='Gender' />
-        <input type='text' ref='address' placeholder='Street address' />
-        <input type='text' ref='state' placeholder='State' />
-        <input type='text' ref='area_code' placeholder='Area code' />
-        <input type='text' ref='language' placeholder='Language' />
+        <input type='text' placeholder='Email' name="email" value={this.state.email} onChange={this.handleChange} />
+        <input type='password' placeholder='Passowrd' name="password" value={this.state.password} onChange={this.handleChange} />
+        <input type='password' placeholder='Confirm Password' name="password_confirmation" value={this.state.password_confirmation} onChange={this.handleChange} />
+        <input type='text' placeholder='Name' name="name" value={this.state.name} onChange={this.handleChange} />
+        <input type='text' placeholder='Date of Birth' name="dob" value={this.state.dob} onChange={this.handleChange} />
+        <input type='text' placeholder='Default Location' name="def_location" value={this.state.def_location} onChange={this.handleChange} />
+        <input type='text' placeholder='Gender' name="gender" value={this.state.gender} onChange={this.handleChange} />
+        <input type='text' placeholder='Street Address' name="address" value={this.state.address} onChange={this.handleChange} />
+        <CountryDropdown
+          value={country}
+          onChange={(val) => this.selectCountry(val)} />
+        <RegionDropdown
+          country={country}
+          value={region}
+          onChange={(val) => this.selectRegion(val)} />
+          <input type='text' placeholder='Area Code' name="area_code" value={this.state.area_code} onChange={this.handleChange} />
+        <input type='text' placeholder='Language' name="language" value={this.state.language} onChange={this.handleChange} />
         <button onClick={(event) => { this.handleClick(event) }} className="btn btn-primary">
           {'Sign up'}
         </button>
+        <inpute type="submit" value="Sign up" />
         <br/>
         <a href='/login'>Login</a>
         <h3 style={hStyle} className="error">{errorMap}</h3>
