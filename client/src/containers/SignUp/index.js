@@ -73,13 +73,16 @@ class SignUp extends React.Component {
     const { country, region } = this.state;
 
     let errorMap = [];
+    let errorKey = [];
     if (errors !== undefined) { 
       if (!!this.props.auth.error.email !== false){ 
-        errorMap.push(this.props.auth.error.email);
+        errorMap.push("Email " + this.props.auth.error.email + "!");
       } else if (!!this.props.auth.error.password !== false) {
-        errorMap.push(this.props.auth.error.password);
+        errorMap.push("Password " + this.props.auth.error.password + "!");
       } else if (!!this.props.auth.error.password_confirmation !== false) {
-        errorMap.push(this.props.auth.error.password_confirmation);
+        errorMap.push("Confirmation " + this.props.auth.error.password_confirmation + "!");
+      } else if (!!this.props.auth.error.name !== false) {
+        errorMap.push("Name" + this.props.auth.error.name + "!");
       }
     }
 
@@ -110,7 +113,7 @@ class SignUp extends React.Component {
         <inpute type="submit" value="Sign up" />
         <br/>
         <a href='/login'>Login</a>
-        <h3 style={hStyle} className="error">{errorMap}</h3>
+        <h3 style={hStyle} className="error">{errorKey}{errorMap}</h3>
           
       </div>
     );
