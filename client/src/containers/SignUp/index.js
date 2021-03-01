@@ -61,9 +61,8 @@ class SignUp extends React.Component {
       const language = this.state.language;
       const country = this.state.country;
       const state = this.state.region;
-      const creds = { email: email.trim(), password: password.trim(), password_confirmation: password_confirmation.trim(), name: name.trim(), dob: dob.trim(), def_location: def_location.trim(), gender: gender.trim(), address: address.trim(), area_code: area_code.trim(), language: language.trim(), country: country.trim(), state: state.trim() };
-      console.log(creds);
-      this.onSignUpClick(creds);
+        const creds = { email: email.trim(), password: password.trim(), password_confirmation: password_confirmation.trim(), name: name.trim(), dob: dob.trim(), def_location: def_location.trim(), gender: gender.trim(), address: address.trim(), area_code: area_code.trim(), language: language.trim(), country: country.trim(), state: state.trim() };
+        this.onSignUpClick(creds);
   }
   
 
@@ -73,7 +72,37 @@ class SignUp extends React.Component {
     const { country, region } = this.state;
 
     let errorMap = [];
-    let errorKey = [];
+    if (this.state.password !== this.state.password_confirmation) {
+      return(
+        <div>
+        <input type='text' placeholder='Email' name="email" value={this.state.email} onChange={this.handleChange} />
+        <input type='password' placeholder='Passowrd' name="password" value={this.state.password} onChange={this.handleChange} />
+        <input type='password' placeholder='Confirm Password' name="password_confirmation" value={this.state.password_confirmation} onChange={this.handleChange} />
+        <input type='text' placeholder='Name' name="name" value={this.state.name} onChange={this.handleChange} />
+        <input type='text' placeholder='Date of Birth' name="dob" value={this.state.dob} onChange={this.handleChange} />
+        <input type='text' placeholder='Default Location' name="def_location" value={this.state.def_location} onChange={this.handleChange} />
+        <input type='text' placeholder='Gender' name="gender" value={this.state.gender} onChange={this.handleChange} />
+        <input type='text' placeholder='Street Address' name="address" value={this.state.address} onChange={this.handleChange} />
+        <CountryDropdown
+          value={country}
+          onChange={(val) => this.selectCountry(val)} />
+        <RegionDropdown
+          country={country}
+          value={region}
+          onChange={(val) => this.selectRegion(val)} />
+        <input type='text' placeholder='Area Code' name="area_code" value={this.state.area_code} onChange={this.handleChange} />
+        <input type='text' placeholder='Language' name="language" value={this.state.language} onChange={this.handleChange} />
+        <button onClick={(event) => { this.handleClick(event) }} className="btn btn-primary">
+          {'Sign up'}
+        </button>
+        <inpute type="submit" value="Sign up" />
+        <br/>
+        <a href='/login'>Login</a>
+        <h3 style={hStyle} className="error">{errorMap}</h3>
+          <h3 style={hStyle} className="error">Passwords do not match!</h3>
+        </div>
+        );
+    }
     if (errors !== undefined) { 
       if (!!this.props.auth.error.email !== false){ 
         errorMap.push("Email " + this.props.auth.error.email + "!");
@@ -82,7 +111,7 @@ class SignUp extends React.Component {
       } else if (!!this.props.auth.error.password_confirmation !== false) {
         errorMap.push("Confirmation " + this.props.auth.error.password_confirmation + "!");
       } else if (!!this.props.auth.error.name !== false) {
-        errorMap.push("Name" + this.props.auth.error.name + "!");
+        errorMap.push("Name " + this.props.auth.error.name + "!");
       }
     }
 
@@ -113,7 +142,7 @@ class SignUp extends React.Component {
         <inpute type="submit" value="Sign up" />
         <br/>
         <a href='/login'>Login</a>
-        <h3 style={hStyle} className="error">{errorKey}{errorMap}</h3>
+        <h3 style={hStyle} className="error">{errorMap}</h3>
           
       </div>
     );
