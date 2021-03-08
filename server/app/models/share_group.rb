@@ -1,0 +1,2 @@
+class ShareGroup < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class AreaAdmin < ApplicationRecord
+end

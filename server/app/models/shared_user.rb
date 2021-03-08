@@ -1,0 +1,2 @@
+class SharedUser < ApplicationRecord
+end
