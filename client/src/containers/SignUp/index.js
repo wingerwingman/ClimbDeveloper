@@ -5,11 +5,6 @@ import { bindActionCreators }    from 'redux';
 import { signUp }                from '../../actions/auth';
 import styles                    from './styles.css';
 
-// https://github.com/mjrussell/redux-auth-wrapper/blob/master/examples/localStorage/components/Login.js
-// https://github.com/auth0-blog/redux-auth/blob/master/components/Login.js
-// https://www.sitepoint.com/introduction-to-using-jwt-in-rails/
-// http://stackoverflow.com/questions/35381276/redux-async-requests-with-fetch-api
-
 class SignUp extends React.Component {
 
   constructor (props) {

@@ -1,6 +1,7 @@
 {
   "name": "Climb-Developer",
   "version": "2.2.0",
+  "proxy": "http://localhost:3000",
   "description": "A new Webpack boilerplate with hot reloading React components, and error handling on module and component level.",
   "scripts": {
     "clean": "rimraf build",
