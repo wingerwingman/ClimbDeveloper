@@ -7,7 +7,7 @@ class CreateAreas < ActiveRecord::Migration[6.1]
       t.text :gps
       t.text :country
       t.text :state
-      t.text :images_id
+      t.text :images_id 
 
       t.timestamps
     end

@@ -13,6 +13,7 @@ import SignUp                   from './containers/SignUp';
 import Links                    from './containers/Links';
 import Home                     from './components/Home';
 import About                    from './components/About';
+import Areas                    from './components/Areas';  
 const App = () => {
   
     return (
@@ -22,6 +23,7 @@ const App = () => {
           <NavigationBar />
               {/* <Route path="/" component={ AppProps }> */}
               <Route exact path="/" component={ Home } />
+              <Route path="/areas" component={Areas} />
               <Route path="/login" component={ LogIn } />
               <Route path="/links" component={ Links } />
               <Route path="/about" component={ About } />

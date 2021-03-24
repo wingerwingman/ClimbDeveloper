@@ -60,6 +60,9 @@ class NavigationBar extends React.Component {
           <LinkContainer to="/">
             <Nav.Link>Home</Nav.Link>
           </LinkContainer>
+          <LinkContainer to="/areas">
+            <Nav.Link>Areas</Nav.Link>
+          </LinkContainer>
           <LinkContainer to="/links">
             <Nav.Link>Links</Nav.Link>
           </LinkContainer>
