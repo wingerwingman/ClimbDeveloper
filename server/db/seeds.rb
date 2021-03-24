@@ -8,5 +8,6 @@
 
 case Rails.env
   when "development"
-    User.create! email: 'jhondoe@example.com', password: 'test1234', password_confirmation: 'test1234'
+    User.create! email: 'jhondoe@example.com', password: 'test1234', password_confirmation: 'test1234', name: 'John Doe'
+    Area.create! name: "Dog houase", country: "United States", state: "Colorado"
 end
